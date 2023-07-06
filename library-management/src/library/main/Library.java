@@ -75,6 +75,9 @@ public class Library{
 				sc.close();
 				System.out.println("thanks for visit!!");
 				break;
+				
+			default:
+				choice = -1;
 			}
 		}
 		while(choice!=5);
