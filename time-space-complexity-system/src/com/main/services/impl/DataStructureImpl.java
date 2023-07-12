@@ -1,4 +1,4 @@
-package com.main.data.structures;
+package com.main.services.impl;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -22,30 +22,36 @@ public class DataStructureImpl implements DataStructureService{
 	
 	public DataStructureImpl(ArrayList<Integer> arrList)
 	{
-		arrlist = arrList;
+		this.arrlist = arrList;
 	}
 	public DataStructureImpl(LinkedList<Integer> linkedList)
 	{
-		linList = linkedList;
+		this.linList = linkedList;
 	}
 	public DataStructureImpl(HashSet<Integer> hashSet)
 	{
-		set = hashSet;
+		this.set = hashSet;
 	}
 	public DataStructureImpl(TreeSet<Integer> treeSet)
 	{
-		set = treeSet;
+		this.set = treeSet;
 	}
 	public DataStructureImpl(HashMap<Integer, Integer> hashMap)
 	{
-		map = hashMap;
+		this.map = hashMap;
 	}
 	public DataStructureImpl(TreeMap<Integer, Integer> treeMap)
 	{
-		map = treeMap;
+		this.map = treeMap;
 	}
 	
-	
+	public void printStatus()
+	{
+		System.out.println("arr list is : "+this.arrlist);
+		System.out.println("link list is : "+this.linList);
+		System.out.println("map is : "+this.map);
+		System.out.println("set is : "+this.set);
+	}
 	@Override
 	public List<List<Long>> calculateTimeAndSpace(long time) {
 		long initial_free_space = Runtime.getRuntime().freeMemory();
@@ -75,7 +81,6 @@ public class DataStructureImpl implements DataStructureService{
 			{
 				linList.add(i);
 			}
-			System.out.println("inked list is : "+linList);
 		}
 		long final_free_space = Runtime.getRuntime().freeMemory();
 		long nano_endTime = System.nanoTime();
@@ -99,27 +104,22 @@ public class DataStructureImpl implements DataStructureService{
 		long nano_startTime = System.nanoTime();
 		if(map != null)
 		{
-			//System.out.println("map is not null");
 			for(int i=0;i<time;i++) {
 				map.remove(i);
 			}
 		}
 		else if(set!=null) {	
-			//System.out.println("set is not null");
 			for(int i=0;i<time;i++) {
 				set.remove(i);
 			}
 		}
 		else if(arrlist != null){
-			for(int i=0;i<time;i++)
-			{
+			for(int i=0;i<time;i++) {
 				arrlist.remove(0);
 			}
 		}
 		else {
-			for(int i=0;i<time;i++)
-			{
-//				System.out.println(linList.get(i));
+			for(int i=0;i<time;i++) {
 				linList.remove();
 			}
 		}
@@ -138,21 +138,6 @@ public class DataStructureImpl implements DataStructureService{
 		result.add(times);
 		result.add(spaces);
 		return result;
-	}
-
-	
-	
-	public Set<Integer> getSet() {
-		return set;
-	}
-	public void setSet(Set<Integer> set) {
-		this.set = set;
-	}
-	public Map<Integer, Integer> getMap() {
-		return map;
-	}
-	public void setMap(Map<Integer, Integer> map) {
-		this.map = map;
 	}
 	
 }

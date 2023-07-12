@@ -9,18 +9,12 @@ import java.util.List;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import com.main.data.structures.ArrayListDS;
-import com.main.data.structures.DataStructureImpl;
-import com.main.data.structures.HashMapDS;
-import com.main.data.structures.HashSetDS;
-import com.main.data.structures.LinkedLListDS;
-import com.main.data.structures.TreeMapDS;
-import com.main.data.structures.TreeSetDS;
 import com.main.services.DataStructureService;
+import com.main.services.impl.DataStructureImpl;
 
 public class TimeSpaceMain {
 	//private static final int INPUT1=10000;
-	private static final int INPUT2=1000000;
+	private static final int INPUT2=100000;
 	
 	private static List<List<Long>> calculatedTimeAndSpace;
 	
@@ -31,18 +25,18 @@ public class TimeSpaceMain {
 		
 		ArrayList<Integer> arrList = new ArrayList<>();
 		DataStructureImpl arrayList = new DataStructureImpl(arrList);
-		calculatedTimeAndSpace =arrayList.calculateTimeAndSpace(10);
+		calculatedTimeAndSpace =arrayList.calculateTimeAndSpace(INPUT2);
 		services.printTimeAndSpace(calculatedTimeAndSpace, INPUT2, "Array List");
-		calculatedTimeAndSpace = arrayList.calculateTimeAndSpaceForDelettion(10);
+		calculatedTimeAndSpace = arrayList.calculateTimeAndSpaceForDelettion(INPUT2);
 		services.printTimeAndSpaceForDeletion(calculatedTimeAndSpace, INPUT2, "Array List");
 		
 		services.printSeprator();
 		
 		LinkedList<Integer> linList = new LinkedList<>();
 		DataStructureImpl linkedList = new DataStructureImpl(linList);
-		calculatedTimeAndSpace = linkedList.calculateTimeAndSpace(10);
+		calculatedTimeAndSpace = linkedList.calculateTimeAndSpace(INPUT2);
 		services.printTimeAndSpace(calculatedTimeAndSpace, INPUT2,"Linked List");
-		calculatedTimeAndSpace =linkedList.calculateTimeAndSpaceForDelettion(10);
+		calculatedTimeAndSpace =linkedList.calculateTimeAndSpaceForDelettion(INPUT2);
 		services.printTimeAndSpaceForDeletion(calculatedTimeAndSpace, INPUT2, "Linked List");
 		
 		services.printSeprator();
