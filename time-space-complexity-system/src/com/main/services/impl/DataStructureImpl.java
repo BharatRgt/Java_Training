@@ -52,6 +52,14 @@ public class DataStructureImpl implements DataStructureService{
 		System.out.println("map is : "+this.map);
 		System.out.println("set is : "+this.set);
 	}
+	
+	/*
+	 * List<List<Long>>:
+	 * {
+	 * 		{startTime, endTime},
+	 * 		{initialFreeSpace, FinalFreeSpace}
+	 * }
+	 */
 	@Override
 	public List<List<Long>> calculateTimeAndSpace(long time) {
 		long initial_free_space = Runtime.getRuntime().freeMemory();
