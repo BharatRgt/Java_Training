@@ -1,5 +1,8 @@
 package com.rgt.user.mgmt.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +38,13 @@ public class UserServicesImpl implements UserServices {
 	public void deleteUser(Integer id) {
 		userRepo.DeleteUser(id);
 		return;
+	}
+
+	@Override
+	public List<User> getUsers() {
+		List<User> listOfUsers = new ArrayList<>();
+		listOfUsers = userRepo.getUsers();
+		return listOfUsers;
 	}
 
 }

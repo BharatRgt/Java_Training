@@ -1,5 +1,7 @@
 package com.rgt.user.mgmt.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.rgt.user.mgmt.entity.User;
@@ -13,4 +15,6 @@ public interface UserServices {
 	public User getUser(Integer id);
 	
 	public void deleteUser(Integer id);
+	
+	public List<User> getUsers();
 }

@@ -1,5 +1,8 @@
 package com.rgt.user.mgmt.controller;
 
+import java.io.IOException;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,27 +20,28 @@ import com.rgt.user.mgmt.entity.User;
 import com.rgt.user.mgmt.service.UserServices;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/users")
 public class UserController {
 	
 	@Autowired
 	private UserServices userService;
 	
-	@PostMapping("/user")
-	public ResponseEntity<User> createUser(@RequestBody User user)
+	@PostMapping()
+	public ResponseEntity<User> createUser(@RequestBody User user) throws IOException
 	{
 		User createdUser = userService.createUser(user);
 		return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/user/{id}")
-	public ResponseEntity<User> getUser(@PathVariable Integer id)
+	@GetMapping("/{id}")
+	public ResponseEntity<User> getUser(@PathVariable Integer id) throws IOException,ClassNotFoundException
 	{
 		User user = userService.getUser(id);
+		if(user == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 	
-	@PutMapping("/user/{id}")
+	@PutMapping("/{id}")
 	public ResponseEntity<User> updateUser(
 			@PathVariable Integer id,
 			@RequestBody User user) {
@@ -46,10 +50,17 @@ public class UserController {
 		return new ResponseEntity<User>(readuser, HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/user/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteUser(@PathVariable Integer id)
 	{
 		userService.deleteUser(id);
 		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	@GetMapping()
+	public ResponseEntity<List<User>> getUsers()
+	{
+		List<User> users = userService.getUsers();
+		return new ResponseEntity<List<User>>(users, HttpStatus.OK);
 	}
 }

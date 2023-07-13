@@ -7,6 +7,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,16 @@ public class UserRepository {
 		try {
 		FileInputStream fis = new FileInputStream(fileName);
 		ObjectInputStream ois = new ObjectInputStream(fis);
-		readUser = (User)ois.readObject();
+		
+		File fobj = new File(fileName);
+		if(fobj.exists()) {
+			readUser = (User)ois.readObject();
+		}
+		else {
+			ois.close();
+			fis.close();
+			return readUser;
+		}
 		
 		ois.close();
 		fis.close();
@@ -56,6 +67,23 @@ public class UserRepository {
 		}
 		return;
 	}
+	
+	public void IterateFileNames(File[] a, int i, List<User> users )  
+	{    
+		if(i == a.length) { 
+			return;  
+		}  
+		 
+		if(a[i].isFile()){
+			String fileName = a[i].getName();
+			System.out.println(fileName);  
+			users.add(readFile(fileName));
+		}  
+
+		IterateFileNames(a, i + 1, users);  
+	}
+	
+	//to save a user.
 	public User save(User user)
 	{
 		User readUser=null;
@@ -66,12 +94,14 @@ public class UserRepository {
 		return readUser;
 	}	
 	
+	//to get info of a user by passing user id;
 	public User getUserById(Integer id)
 	{
 		String fileName = "C:\\rgt\\Java_Training_projects\\Java_Training\\user.mgmt\\data\\users/user"+id+".txt";
 		User readUser = readFile(fileName);
 		return readUser;
 	}
+	
 	
 	public User updateUser(Integer id, User user)
 	{
@@ -85,7 +115,22 @@ public class UserRepository {
 	{
 		String fileName = "C:\\rgt\\Java_Training_projects\\Java_Training\\user.mgmt\\data\\users/user"+id+".txt";
 		File file = new File(fileName);
-		file.delete();
+		if(file.exists()) {
+			file.delete();
+		}
 	}
 	
+	public List<User> getUsers()
+	{
+		File[] listOfFiles = userHelper.listOfFiles();
+		List<User> listOfUser = new ArrayList<>();
+		for(File file : listOfFiles)
+		{
+			String fileName = file.toString();
+			System.out.println("file name is : "+ fileName);
+			User readFile = readFile(fileName);
+			listOfUser.add(readFile);
+		}
+		return listOfUser;
+	}
 }
