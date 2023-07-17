@@ -15,8 +15,11 @@ import lombok.Setter;
 @Setter
 public class User implements Serializable{
 	
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	private static final long serialVersionUID = 1L;
+	
 	private Integer id;
+	
+	private String role="ROLE_NORMAL";
 	
 	private String userName;
 	

@@ -51,6 +51,7 @@ public class UserRepository {
 		return readUser;
 	}
 	
+	
 	public void writeFile(String fileName, User user)
 	{
 		try
@@ -68,21 +69,6 @@ public class UserRepository {
 		return;
 	}
 	
-	public void IterateFileNames(File[] a, int i, List<User> users )  
-	{    
-		if(i == a.length) { 
-			return;  
-		}  
-		 
-		if(a[i].isFile()){
-			String fileName = a[i].getName();
-			System.out.println(fileName);  
-			users.add(readFile(fileName));
-		}  
-
-		IterateFileNames(a, i + 1, users);  
-	}
-	
 	//to save a user.
 	public User save(User user)
 	{
@@ -94,6 +80,7 @@ public class UserRepository {
 		return readUser;
 	}	
 	
+	
 	//to get info of a user by passing user id;
 	public User getUserById(Integer id)
 	{
@@ -102,7 +89,7 @@ public class UserRepository {
 		return readUser;
 	}
 	
-	
+	//update user details.
 	public User updateUser(Integer id, User user)
 	{
 		user.setId(id);
@@ -111,6 +98,7 @@ public class UserRepository {
 		return readFile(fileName);
 	}
 	
+	//delete an existing user.
 	public void DeleteUser(Integer id)
 	{
 		String fileName = "C:\\rgt\\Java_Training_projects\\Java_Training\\user.mgmt\\data\\users/user"+id+".txt";
@@ -120,6 +108,7 @@ public class UserRepository {
 		}
 	}
 	
+	//return the list of users.
 	public List<User> getUsers()
 	{
 		File[] listOfFiles = userHelper.listOfFiles();
@@ -127,10 +116,25 @@ public class UserRepository {
 		for(File file : listOfFiles)
 		{
 			String fileName = file.toString();
-			System.out.println("file name is : "+ fileName);
+			//System.out.println("file name is : "+ fileName);
 			User readFile = readFile(fileName);
 			listOfUser.add(readFile);
 		}
 		return listOfUser;
+	}
+	
+	public User getUserByUserName(String userName)
+	{
+		User foundUser = null;
+		List<User> users = getUsers();
+		for(User user : users)
+		{
+			if(user.getUserName().equals(userName))
+			{
+				foundUser = user;
+				break;
+			}
+		}
+		return foundUser;
 	}
 }

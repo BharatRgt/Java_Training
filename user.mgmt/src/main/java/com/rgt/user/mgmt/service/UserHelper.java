@@ -17,14 +17,20 @@ public class UserHelper {
 	//return unique id;
 	public int uniqueId()
 	{
-		 File[] listOfFiles = listOfFiles();
-		 int length = listOfFiles.length;
-		 String lastFileName = listOfFiles[length-1].getName();
-		 int end_idx = lastFileName.indexOf('.');
-		 int idx = Integer.parseInt(lastFileName.substring(4, end_idx));
-		 System.out.println("index is : "+idx);
-		 this.id = idx;
+		 this.setId();
 		 return ++id;
+	}
+	
+	public void setId()
+	{
+		File[] listOfFiles = listOfFiles();
+		for(File file : listOfFiles)
+		{
+			String fileName = file.getName();
+			int end_idx = fileName.indexOf('.');
+			int idx = Integer.parseInt(fileName.substring(4, end_idx));
+			this.id = this.id<idx?idx:this.id;
+		}
 	}
 	
 	public File[] listOfFiles()
@@ -32,8 +38,7 @@ public class UserHelper {
 		String path = "C:\\rgt\\Java_Training_projects\\Java_Training\\user.mgmt\\data\\users";
 		File fObj = new File(path);
 		File[] listOfFiles = null;
-		if(fObj.exists() && fObj.isDirectory())
-		{
+		if(fObj.exists() && fObj.isDirectory()) {
 			listOfFiles = fObj.listFiles();
 		}
 		return listOfFiles;
