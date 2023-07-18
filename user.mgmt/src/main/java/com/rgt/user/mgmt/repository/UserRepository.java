@@ -74,7 +74,8 @@ public class UserRepository {
 	{
 		User readUser=null;
 		user.setId(userHelper.uniqueId());
-		String fileName = "C:\\rgt\\Java_Training_projects\\Java_Training\\user.mgmt\\data\\users/user"+user.getId()+".txt";
+		//String fileName = "C:\\rgt\\Java_Training_projects\\Java_Training\\user.mgmt\\data\\users/user"+user.getId()+".txt";
+		String fileName = "data\\users/user"+user.getId()+".txt";
 		writeFile(fileName, user);
 		readUser = readFile(fileName);
 		return readUser;
@@ -84,7 +85,8 @@ public class UserRepository {
 	//to get info of a user by passing user id;
 	public User getUserById(Integer id)
 	{
-		String fileName = "C:\\rgt\\Java_Training_projects\\Java_Training\\user.mgmt\\data\\users/user"+id+".txt";
+		//String fileName = "C:\\rgt\\Java_Training_projects\\Java_Training\\user.mgmt\\data\\users/user"+id+".txt";
+		String fileName = "data\\users/user"+id+".txt";
 		User readUser = readFile(fileName);
 		return readUser;
 	}
@@ -93,7 +95,8 @@ public class UserRepository {
 	public User updateUser(Integer id, User user)
 	{
 		user.setId(id);
-		String fileName = "C:\\rgt\\Java_Training_projects\\Java_Training\\user.mgmt\\data\\users/user"+id+".txt";
+		//String fileName = "C:\\rgt\\Java_Training_projects\\Java_Training\\user.mgmt\\data\\users/user"+id+".txt";
+		String fileName = "data\\users/user"+id+".txt";
 		writeFile(fileName, user);
 		return readFile(fileName);
 	}
@@ -101,7 +104,8 @@ public class UserRepository {
 	//delete an existing user.
 	public void DeleteUser(Integer id)
 	{
-		String fileName = "C:\\rgt\\Java_Training_projects\\Java_Training\\user.mgmt\\data\\users/user"+id+".txt";
+		//String fileName = "C:\\rgt\\Java_Training_projects\\Java_Training\\user.mgmt\\data\\users/user"+id+".txt";
+		String fileName = "data\\users/user"+id+".txt";
 		File file = new File(fileName);
 		if(file.exists()) {
 			file.delete();

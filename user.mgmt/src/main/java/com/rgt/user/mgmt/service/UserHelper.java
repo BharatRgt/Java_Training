@@ -35,7 +35,7 @@ public class UserHelper {
 	
 	public File[] listOfFiles()
 	{
-		String path = "C:\\rgt\\Java_Training_projects\\Java_Training\\user.mgmt\\data\\users";
+		String path = "data\\users";
 		File fObj = new File(path);
 		File[] listOfFiles = null;
 		if(fObj.exists() && fObj.isDirectory()) {
