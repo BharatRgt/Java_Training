@@ -1,7 +1,9 @@
 package ecom.rgt.books.store.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.hibernate.ResourceClosedException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,6 @@ public class BookServiceImpl implements BookService {
 	
 	@Override
 	public Books addBook(Books book) {
-		System.out.println(book);
 		Books savedBook = bookRepo.save(book);
 		return savedBook;
 	}
@@ -75,6 +76,17 @@ public class BookServiceImpl implements BookService {
 	public Books bookByName(String bookName) {
 		Books findByBookName = this.bookRepo.findByBookName(bookName);
 		return findByBookName;
+	}
+
+	@Override
+	public List<Books> activeBooks() {
+		List<Books> allBooks = this.bookRepo.findAll();
+		List<Books> activeBooks = new ArrayList<>();
+		for(Books book : allBooks)
+		{
+			if(book.isAvailable() == true) activeBooks.add(book);
+		}
+		return activeBooks;
 	}
 	
 	

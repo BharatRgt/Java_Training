@@ -20,4 +20,6 @@ public interface BookService {
 	public PageResponse listOfBooks(Integer page, Integer size);
 	
 	public Books bookByName(String bookName);
+	
+	public List<Books> activeBooks();
 }

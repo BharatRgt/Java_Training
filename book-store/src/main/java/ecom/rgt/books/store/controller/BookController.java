@@ -71,4 +71,11 @@ public class BookController {
     	Books bookByName = this.bookService.bookByName(bookName);
     	return new ResponseEntity<Books>(bookByName, HttpStatus.OK);
     }
+    
+    @GetMapping("/book/active")
+    public ResponseEntity<List<Books>> getActiveBooks()
+    {
+    	List<Books> activeBooks = this.bookService.activeBooks();
+    	return new ResponseEntity<List<Books>>(activeBooks, HttpStatus.OK);
+    }
 }
