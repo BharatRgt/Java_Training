@@ -18,4 +18,6 @@ public interface BookService {
 	public void deleteBook(Integer bId);
 	
 	public PageResponse listOfBooks(Integer page, Integer size);
+	
+	public Books bookByName(String bookName);
 }

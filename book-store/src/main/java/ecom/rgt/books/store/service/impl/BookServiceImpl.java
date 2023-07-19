@@ -25,6 +25,7 @@ public class BookServiceImpl implements BookService {
 	
 	@Override
 	public Books addBook(Books book) {
+		System.out.println(book);
 		Books savedBook = bookRepo.save(book);
 		return savedBook;
 	}
@@ -68,6 +69,12 @@ public class BookServiceImpl implements BookService {
 		
 		
 		return bookPagination;
+	}
+
+	@Override
+	public Books bookByName(String bookName) {
+		Books findByBookName = this.bookRepo.findByBookName(bookName);
+		return findByBookName;
 	}
 	
 	

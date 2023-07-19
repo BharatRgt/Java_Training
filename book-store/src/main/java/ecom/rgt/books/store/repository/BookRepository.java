@@ -6,4 +6,6 @@ import ecom.rgt.books.store.entity.Books;
 
 public interface BookRepository extends JpaRepository<Books, Integer>{
 	public Books findById(Long id);
+	
+	public Books findByBookName(String bookName);
 }

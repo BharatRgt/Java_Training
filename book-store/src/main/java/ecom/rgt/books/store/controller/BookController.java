@@ -65,4 +65,10 @@ public class BookController {
 		
 		return new ResponseEntity<ApiResponse>(new ApiResponse("user deleted successfully", true), HttpStatus.OK);
 	}
+	
+    @GetMapping("/name/{bookName}")
+    public ResponseEntity<Books> getByBookName(@PathVariable("bookName") String bookName){
+    	Books bookByName = this.bookService.bookByName(bookName);
+    	return new ResponseEntity<Books>(bookByName, HttpStatus.OK);
+    }
 }
