@@ -23,7 +23,7 @@ public class Server {
 			}
 		}
 		catch(Exception e) {
-			e.printStackTrace();
+			closeServerSocket();
 		}
 	}
 	
@@ -31,6 +31,7 @@ public class Server {
 	public void closeServerSocket() {
 		try {
 			if(serverSocket!=null) {
+				System.out.println("server terminated...");
 				serverSocket.close();
 			}
 		}
@@ -41,6 +42,7 @@ public class Server {
 	
 	public static void main(String[] args) throws IOException{
 		ServerSocket serverSocket = new ServerSocket(9090);
+		System.out.println("Server is running...");
 		Server server = new Server(serverSocket);
 		server.startServer();
 	}

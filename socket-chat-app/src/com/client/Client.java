@@ -15,6 +15,7 @@ public class Client{
 	private BufferedWriter bufferedWriter;
 	private String userName;
 	
+	//to initialize socket and username;
 	public Client(Socket socket, String userName) {
 		try {
 			this.socket = socket;
