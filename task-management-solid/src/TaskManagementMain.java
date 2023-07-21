@@ -64,18 +64,13 @@ public class TaskManagementMain {
 				helperService.printTasks(tasksOfProject);
 				break;
 				
-			//marking a task done.
-			case 5:
-				
-				break;
-				
 			//exit.
-			case 6:
+			case 5:
 				System.out.println("exit successful");
 				break;
 			}
 		}
-		while(mainMenuChoice != 6);
+		while(mainMenuChoice != 5);
 		
 		
 		

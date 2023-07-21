@@ -150,7 +150,6 @@ public class HelperImpl implements Helper {
 		System.out.println("2.) Add Task");
 		System.out.println("3.) Show Task with with high priority.");
 		System.out.println("4.) show tasks of a project.");
-		System.out.println("5.) mark a task done.");
 		System.out.println("5.) exit");
 		System.out.print("Enter choice: ");
 		choice = sc.nextInt();
