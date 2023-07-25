@@ -30,7 +30,7 @@ public class MessagingMainApp {
 			    String[] loginDetails = helper.loginForm();
 			    loginResponse = service.login(loginDetails);
 			    helper.loginMessage(loginResponse);
-			    
+			    System.out.println("");
 			    if(loginResponse.isLogin())
 			    {
 			    	int loginUserChoice;
@@ -44,11 +44,13 @@ public class MessagingMainApp {
 								service.saveTweet(createdTweet,loginResponse.getUser().getUserName());
 								break;
 							
-							//view your profile;
-							case 5:
-								helper.showProfile(loginResponse.getUser());
+							//login user timeline;
+							case 2:
+								List<Tweet> tweets = loginResponse.getUser().getTweets();
+								helper.showTweets(tweets);
 								break;
-							
+								
+								
 							//search for users;
 							case 3:
 								List<String> userNames = service.getUserNames();
@@ -59,18 +61,42 @@ public class MessagingMainApp {
 									System.out.println("user not found with this userName");
 								}
 								else {
-									System.out.println("user found");
-									
+									System.out.println("user found: "+searchedUser.getName()+"\n" + "bio--> "+searchedUser.getBio());
+									loginUserChoice = helper.userOperation();
+									if(loginUserChoice == 1) {
+										service.follow(loginResponse.getUser(), searchedUser);
+									}
 								}
 								break;
+								
+							case 4:
+								Integer tweetId = helper.inputTweetId();
+								Tweet foundTweet = service.searchTweet(tweetId);
+								if(foundTweet == null) {
+									System.out.println("no tweet found with "+ tweetId + " this tweet id.");
+								}
+								else {
+									System.out.println(foundTweet);
+								}
+								break;
+								
+							//view your profile;
+							case 5:
+								helper.showProfile(loginResponse.getUser());
+								break;
+							
 								
 							//logout:
 							case 6:
 								System.out.println(loginResponse.getUser().getName() + " logout successfully!!");
+								loginResponse = null;
 								break;
 							default:
 								throw new IllegalArgumentException("Unexpected value: " + loginUserChoice);
 						}
+					    System.out.println("");
+						System.out.println("------------------------------------------------------------------------------");
+						System.out.println("");
 				    }
 				    while(loginUserChoice != 6);
 			    }
@@ -83,6 +109,9 @@ public class MessagingMainApp {
 			default:
 				throw new IllegalArgumentException("Unexpected value: " + mainChoice);
 			}
+			System.out.println("");
+			System.out.println("------------------------------------------------------------------------------");
+			System.out.println("");
 		}
 		while(mainChoice != 3);
 	}

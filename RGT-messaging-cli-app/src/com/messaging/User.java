@@ -31,24 +31,15 @@ public class User {
 		this.userName = userName;
 		this.password = password;
 		this.bio = bio;
-	}
-
-	public String follow() {
-		return null;
-	}
-	
-	public String unfollow() {
-		return null;
+		this.followers = new ArrayList<>();
+		this.following = new ArrayList<>();
+		this.tweets = new ArrayList<>();
 	}
 	
-	public String postTweet() {
-		return null;
+	public void postTweet(Tweet tweet) {
+		if(tweets == null) tweets = new ArrayList<>();
+		tweets.add(tweet);
 	}
-	
-	public String deleteTweet() {
-		return null;
-	}
-
 	
 	/*
 	 * getters and setters;
@@ -107,11 +98,6 @@ public class User {
 
 	public void setTweets(List<Tweet> tweets) {
 		this.tweets = tweets;
-	}
-
-	public void setTweet(Tweet tweet) {
-		if(tweets == null) tweets = new ArrayList<>();
-		tweets.add(tweet);
 	}
 	
 	
